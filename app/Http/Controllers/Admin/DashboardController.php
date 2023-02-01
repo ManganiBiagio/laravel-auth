@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function home(){
-        return "account loggato mostro la home";
+        return view("admin.dashboard");
     }
 }

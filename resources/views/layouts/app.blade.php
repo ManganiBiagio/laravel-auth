@@ -34,6 +34,7 @@
                         </svg>
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
+                    
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -46,6 +47,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
+                        @if(Auth::user())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route("admin.projects.index")}}">Lista Progetti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route("admin.projects.create")}}">Aggiungi Progetto</a>
+                        </li>
+
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
