@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1 class="title-main">Lista Progetti</h1>
-    <div class="row row-cols-6  g-4 py-5">
+<div class="container  ">
+    <h1 class="title-main mt-4">Lista Progetti</h1>
+    <div class="row row-cols-6  g-4 ">
         @foreach ($projects as $project)
         <div class="col-4" >
             <div class="card">
