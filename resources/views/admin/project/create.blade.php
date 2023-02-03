@@ -5,7 +5,7 @@
 <div class="container">
     <h1>Nuovo Progetto</h1>
 
-    <form action="{{ route('admin.projects.store') }}" method="POST">
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
   
       <div class="mb-3">
@@ -29,7 +29,7 @@
       
       <div class="mb-3">
         <label class="form-label">Immagine</label>
-        <input type="text" class="form-control @error('cover_img') is-invalid @elseif(old('cover_img')) is-valid @enderror" name="cover_img" value="{{old("cover_img")}}">
+        <input type="file" class="form-control @error('cover_img') is-invalid  @enderror" name="cover_img" >
          @error('cover_img')
         <div class="invalid-feedback">
           {{ $message }}

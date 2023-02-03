@@ -41,3 +41,4 @@ Route::middleware(['auth', 'verified'])
         Route::resource("projects", ProjectController::class);
        
     });
+       

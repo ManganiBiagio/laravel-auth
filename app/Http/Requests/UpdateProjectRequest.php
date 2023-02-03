@@ -31,7 +31,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             "name" => "required|max:255",
             "description" => "required|string",
-            "cover_img" => "max:255",
+            "cover_img" => "image",
             "github_link"=>"max:255"
         ];
     }

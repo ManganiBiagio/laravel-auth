@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -42,7 +43,17 @@ class ProjectController extends Controller
         $data=$request->validated();
         $data=$request->all();
 
+        if(key_exists("cover_img",$data)){
+            $path=Storage::put("posts",$data["cover_img"]);
+
+        }else{
+            $path="";
+        }
+        
+
         $project=Project::create($data);
+        $project->cover_img=$path;
+        $project->save();
 
         return redirect()->route("admin.projects.show",$project->id);
             
@@ -82,8 +93,13 @@ class ProjectController extends Controller
         
         $data=$request->validated();
         $data=$request->all();
-
         $project->fill($data);
+        if(key_exists("cover_img",$data)){
+            $path=Storage::put("posts",$data["cover_img"]);
+            Storage::delete($project->cover_img);
+            $project->cover_img=$path;
+        }
+
         $project->save();
 
         return redirect()->route("admin.projects.show",$project->id);
@@ -100,6 +116,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->cover_img){
+            Storage::delete($project->cover_img);
+        }
         $project->delete();
         return redirect()->route("admin.projects.index");
     }
